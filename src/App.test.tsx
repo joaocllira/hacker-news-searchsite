@@ -1,9 +1,8 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { createRoot } from 'react-dom/client';
 import App from './App';
 
-test('renders App Title', () => {
-    render(<App />);
-    const linkElement = screen.getByText(/A Hacker News Search Website/i);
-    expect(linkElement).toBeInTheDocument();
+it('renders the App component without crashing', () => {
+    const container = document.createElement('div');
+    const root = createRoot(container);
+    root.render(<App />,);
 });

@@ -3,10 +3,10 @@ import { Story } from '../StoryItem';
 import '../../App.css';
 import './SearchBox.css';
 
-type TSearchCallBack = (stories: Story[]) => void;
+export type TSearchCallBack = (stories: Story[]) => void;
 type TUseCallback = (page: number) => void
 
-interface ISearchBoxProps {
+export interface ISearchBoxProps {
     returnStoryList: TSearchCallBack,
     currentPage: number
 }
