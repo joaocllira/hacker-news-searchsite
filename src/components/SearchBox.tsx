@@ -68,10 +68,6 @@ export function SearchBox({ returnStoryList, currentPage }: ISearchBoxProps) {
                         onClick={() => setSortType(SearchSortType.BY_DATE)}>Date</button>
                 </div>
             </div>
-
-            {/*<p>
-                You're searching for <span style={{ fontWeight: "bold" }}>{searchText || "<blank>"}</span>
-            </p>*/}
         </div>
     );
 }
