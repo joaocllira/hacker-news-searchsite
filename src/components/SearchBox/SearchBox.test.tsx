@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { SearchBox } from '.';
+import SearchBox from '.';
 import { Story } from '../StoryItem';
 
 it('renders a SearchBox without crashing', () => {

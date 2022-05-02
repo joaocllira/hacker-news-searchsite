@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, memo } from 'react';
 import { Story } from '../StoryItem';
+import { getRemoteStories } from '../../api/services';
 import '../../App.css';
 import './SearchBox.css';
 
@@ -11,25 +12,18 @@ export interface ISearchBoxProps {
     currentPage: number
 }
 
-interface IStories {
-    hits: Story[]
-}
-
 enum SearchSortType {
     BY_POPULARITY = "search",
     BY_DATE = "search_by_date"
 }
 
-export function SearchBox({ returnStoryList, currentPage }: ISearchBoxProps) {
+function SearchBox({ returnStoryList, currentPage }: ISearchBoxProps) {
     let [searchText, setSearchText] = useState<string>('');
     let [sortType, setSortType] = useState<string>(SearchSortType.BY_POPULARITY);
 
     const fetchStories: TUseCallback = useCallback<TUseCallback>(async (page: number) => {
-        let results: any = await fetch(`http://hn.algolia.com/api/v1/${sortType}?query=${searchText}&tags=story&page=${page}`);
-
-        let stories: IStories = await results.json();
-
-        returnStoryList(stories.hits);
+        let stories = await getRemoteStories(sortType, searchText, page);
+        returnStoryList(stories);
     }, [searchText, sortType, returnStoryList]);
 
     useEffect(() => {
@@ -40,20 +34,22 @@ export function SearchBox({ returnStoryList, currentPage }: ISearchBoxProps) {
         fetchStories(currentPage);
     }, [currentPage, fetchStories]);
 
-    function checkSortButton(buttonSortType: string) {
+    const checkSortButton = useCallback((buttonSortType: string) => {
         if (buttonSortType === sortType)
             return { background: "#ccc" }
         else
             return undefined;
-    }
+    }, [sortType]);
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        let text: string = e.target.value;
+        setSearchText(text);
+    };
 
     return (
         <div className="search-box">
             <label htmlFor="search-input">Search terms</label>
-            <input id="search-input" onChange={(e) => {
-                let text: string = e.target.value;
-                setSearchText(text);
-            }} className="search-input" />
+            <input id="search-input" onChange={handleInputChange} className="search-input" />
 
             <div className="sort-box">
                 <span>Sort by</span>
@@ -69,4 +65,6 @@ export function SearchBox({ returnStoryList, currentPage }: ISearchBoxProps) {
             </div>
         </div>
     );
-}
+};
+
+export default memo(SearchBox);

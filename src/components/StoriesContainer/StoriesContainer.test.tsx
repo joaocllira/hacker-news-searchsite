@@ -1,8 +1,8 @@
 import { createRoot } from 'react-dom/client';
-import App from './App';
+import StoriesContainer from '.';
 
-it('renders the App component without crashing', () => {
+it('renders a StoriesContainer without crashing', () => {
     const container = document.createElement('div');
     const root = createRoot(container);
-    root.render(<App />,);
+    root.render(<StoriesContainer />,)
 });

@@ -1,7 +1,7 @@
-import { useState, useCallback } from 'react';
-import { SearchBox } from '../SearchBox';
-import { StoryItem } from '../StoryItem';
-import { PageChanger } from '../PageChanger';
+import { useState, useCallback, memo } from 'react';
+import SearchBox from '../SearchBox';
+import StoryItem from '../StoryItem';
+import PageChanger from '../PageChanger';
 import { Story } from '../StoryItem';
 import '../../App.css';
 import './StoriesContainer.css';
@@ -14,6 +14,8 @@ function StoriesContainer() {
         setStoriesList(stories);
     }, []);
 
+    const returnCurrentPage = useCallback((page: number) => setCurrentPage(page), []);
+
     return (
         <div className="stories-container">
             <SearchBox returnStoryList={returnStoryList} currentPage={currentPage} />
@@ -23,7 +25,7 @@ function StoriesContainer() {
             <div className="stories-list">
                 <h2>Stories Found</h2>
 
-                <PageChanger returnCurrentPage={useCallback((page: number) => setCurrentPage(page), [])} />
+                <PageChanger returnCurrentPage={returnCurrentPage} />
 
                 {storiesList?.length < 1 && <h5>There are no stories</h5>}
 
@@ -40,4 +42,4 @@ function StoriesContainer() {
     );
 };
 
-export default StoriesContainer;
+export default memo(StoriesContainer);

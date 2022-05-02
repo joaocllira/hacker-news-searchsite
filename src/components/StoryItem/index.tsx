@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import '../../App.css';
 import './StoryItem.css';
 
@@ -34,3 +35,4 @@ export function StoryItem({ story }: IStoryProps) {
     );
 };
 
+export default memo(StoryItem);

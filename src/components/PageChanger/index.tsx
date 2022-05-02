@@ -1,5 +1,5 @@
-import { useState, useCallback } from 'react';
-import '../App.css';
+import { useState, useCallback, memo } from 'react';
+import '../../App.css';
 
 type TChangePageCallBack = (page: number) => void;
 type TUseCallback = (page: string) => void;
@@ -19,38 +19,41 @@ export function PageChanger({ returnCurrentPage }: IPageChangerProps) {
     const changePage: TUseCallback = useCallback<TUseCallback>((page: string) => {
         let newValue: number = parseInt(page);
 
-        setCurrentPage(page);
         if (!isNaN(newValue)) {
             returnCurrentPage(newValue);
         }
+
+        setCurrentPage(page);
     }, [returnCurrentPage]);
+
+    const handlePageIncrement = (increment: number) => {
+        let newValue: number = parseInt(currentPage);
+        if (!isNaN(newValue) && newValue + increment > 1) {
+            changePage((newValue + increment).toString());
+        }
+    };
+
+    const handleIncrementButton = () => handlePageIncrement(1);
+    const handleDecrementButton = () => handlePageIncrement(-1);
 
     return (
         <div>
             <div style={{ ...buttonStyle, marginRight: "10px" }}
-                onClick={() => {
-                    let newValue: number = parseInt(currentPage);
-                    if (!isNaN(newValue) && newValue > 1) {
-                        changePage((newValue - 1).toString());
-                    }
-                }}>
+                onClick={handleDecrementButton}>
                 &#9194;
             </div>
 
-            Page < input value={currentPage} size={4}
+            Page <input value={currentPage} size={4}
                 onChange={({ target }) => {
                     changePage(target.value);
                 }} />
 
-            < div style={{ ...buttonStyle, marginLeft: "10px" }}
-                onClick={() => {
-                    let newValue: number = parseInt(currentPage);
-                    if (!isNaN(newValue)) {
-                        changePage((newValue + 1).toString());
-                    }
-                }}>
+            <div style={{ ...buttonStyle, marginLeft: "10px" }}
+                onClick={handleIncrementButton}>
                 &#9193;
             </div >
         </div >
     );
 }
+
+export default memo(PageChanger);
