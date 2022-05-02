@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Story } from './StoriesContainer';
-import '../App.css';
+import { Story } from '../StoriesContainer';
+import '../../App.css';
 import './SearchBox.css';
 
 type TSearchCallBack = (stories: Story[]) => void;
@@ -31,15 +31,15 @@ export function SearchBox({ returnStoryList, currentPage }: ISearchBoxProps) {
 
         console.log(stories);
         returnStoryList(stories.hits);
-    }, [searchText, sortType]);
+    }, [searchText, sortType, returnStoryList]);
 
     useEffect(() => {
         fetchStories(1);
-    }, [searchText, sortType]);
+    }, [searchText, sortType, fetchStories]);
 
     useEffect(() => {
         fetchStories(currentPage);
-    }, [currentPage]);
+    }, [currentPage, fetchStories]);
 
     function checkSortButton(buttonSortType: string) {
         if (buttonSortType === sortType)

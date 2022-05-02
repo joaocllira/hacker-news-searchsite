@@ -1,39 +1,56 @@
 import { useState, useCallback } from 'react';
 import '../App.css';
-import './StoriesContainer.css';
 
 type TChangePageCallBack = (page: number) => void;
-type TUseCallback = (page: number) => void;
+type TUseCallback = (page: string) => void;
 
 interface IPageChangerProps {
     returnCurrentPage: TChangePageCallBack
 }
 
-export function PageChanger({ returnCurrentPage }: IPageChangerProps) {
-    let [currentPage, setCurrentPage] = useState<number>(1);
+const buttonStyle = {
+    display: "inline-block",
+    cursor: "pointer"
+}
 
-    const changePage: TUseCallback = useCallback<TUseCallback>((page: number) => {
-        if (page < 1) {
-            return;
-        }
-        returnCurrentPage(page);
+export function PageChanger({ returnCurrentPage }: IPageChangerProps) {
+    let [currentPage, setCurrentPage] = useState<string>("1");
+
+    const changePage: TUseCallback = useCallback<TUseCallback>((page: string) => {
+        let newValue: number = parseInt(page);
+
         setCurrentPage(page);
-    }, []);
+        if (!isNaN(newValue)) {
+            returnCurrentPage(newValue);
+        }
+    }, [returnCurrentPage]);
 
     return (
         <div>
-            <div className="page-changer" style={{ marginRight: "10px" }}
-                onClick={() => changePage(currentPage - 1)}>
+            <div style={{ ...buttonStyle, marginRight: "10px" }}
+                onClick={() => {
+                    let newValue: number = parseInt(currentPage);
+                    if (!isNaN(newValue) && newValue > 1) {
+                        changePage((newValue - 1).toString());
+                    }
+                }}>
                 &#9194;
             </div>
 
-            Page <input value={currentPage} size={4}
-                onChange={({ target }) => changePage(eval(target.value))} />
+            Page < input value={currentPage} size={4}
+                onChange={({ target }) => {
+                    changePage(target.value);
+                }} />
 
-            <div className="page-changer" style={{ marginLeft: "10px" }}
-                onClick={() => changePage(currentPage + 1)}>
+            < div style={{ ...buttonStyle, marginLeft: "10px" }}
+                onClick={() => {
+                    let newValue: number = parseInt(currentPage);
+                    if (!isNaN(newValue)) {
+                        changePage((newValue + 1).toString());
+                    }
+                }}>
                 &#9193;
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }

@@ -1,5 +1,5 @@
-import { Story } from './StoriesContainer';
-import '../App.css';
+import { Story } from '../StoriesContainer';
+import '../../App.css';
 import './Story.css';
 
 interface IStoryProps {

@@ -1,9 +1,9 @@
 import { useState, useCallback } from 'react';
-import { SearchBox } from './SearchBox';
-import { PageChanger } from './PageChanger';
-import '../App.css';
+import { SearchBox } from '../SearchBox';
+import { PageChanger } from '../PageChanger';
+import '../../App.css';
 import './StoriesContainer.css';
-import StoryItem from './Story';
+import StoryItem from '../Story/Story';
 
 export interface Story {
     id: number,
@@ -34,7 +34,7 @@ function StoriesContainer() {
             <div className="stories-list">
                 <h2>Stories Found</h2>
 
-                <PageChanger returnCurrentPage={(page: number) => setCurrentPage(page)} />
+                <PageChanger returnCurrentPage={useCallback((page: number) => setCurrentPage(page), [])} />
 
                 {storiesList?.length < 1 && <h5>There are no stories</h5>}
 
