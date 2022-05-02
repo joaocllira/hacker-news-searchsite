@@ -26,15 +26,19 @@ export function PageChanger({ returnCurrentPage }: IPageChangerProps) {
         setCurrentPage(page);
     }, [returnCurrentPage]);
 
-    const handlePageIncrement = (increment: number) => {
+    const handleIncrementButton = () => {
         let newValue: number = parseInt(currentPage);
-        if (!isNaN(newValue) && newValue + increment > 1) {
-            changePage((newValue + increment).toString());
+        if (!isNaN(newValue)) {
+            changePage((newValue + 1).toString());
         }
-    };
+    }
 
-    const handleIncrementButton = () => handlePageIncrement(1);
-    const handleDecrementButton = () => handlePageIncrement(-1);
+    const handleDecrementButton = () => {
+        let newValue: number = parseInt(currentPage);
+        if (!isNaN(newValue) && newValue > 1) {
+            changePage((newValue - 1).toString());
+        }
+    }
 
     return (
         <div>
