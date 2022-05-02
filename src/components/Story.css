@@ -1,0 +1,56 @@
+.story-item {
+    background: #FCFCFC;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 5px;   
+
+    transition: background-color 0.3s linear; /* vendorless fallback */
+    -o-transition: background-color 0.3s linear; /* opera */
+    -ms-transition: background-color 0.3s linear; /* IE 10 */
+    -moz-transition: background-color 0.3s linear; /* Firefox */
+    -webkit-transition: background-color 0.3s linear; /*safari and chrome */
+}
+
+.story-item:hover {
+    background-color: #eee;
+    color: #000;
+
+    transition: none; /* vendorless fallback */
+    -o-transition: none; /* opera */
+    -ms-transition: none; /* IE 10 */
+    -moz-transition: none; /* Firefox */
+    -webkit-transition: none; /*safari and chrome */
+}
+
+.flexbox {
+    display: flex;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.title-column {
+    box-sizing: content-box;
+    width: 85%;
+}
+
+.title-column a {
+    color: #696969;
+}
+
+.title-text {
+    font-weight: bold;
+}
+
+.score-column {
+    box-sizing: content-box;
+    width: 15%;
+    height: 100%;
+    align-self: center;
+    font-weight: bold;
+}

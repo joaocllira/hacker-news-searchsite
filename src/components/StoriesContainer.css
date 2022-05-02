@@ -1,0 +1,15 @@
+.stories-container {
+    padding: 45px 200px 0px 200px;
+}
+
+.stories-container ul {
+    list-style-type: none;
+}
+
+.stories-list {
+    margin-top: 35px;
+}
+
+.page-changer {
+    display: inline-block;
+}

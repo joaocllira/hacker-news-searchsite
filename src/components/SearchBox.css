@@ -1,0 +1,40 @@
+.search-box {
+    margin-bottom: 35px;
+}
+
+.search-input {
+    width: 50%;
+    margin-left: 10px;
+}
+
+.button-group {
+    display: inline-flex;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-left: 10px;
+}
+  
+.button {
+    padding: 10px 16px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-right: 1px solid #bbb;
+    background: #eee;
+    font-family: "Inter", sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+  
+.button:last-child {
+    border-right: none;
+}
+  
+.button:hover {
+    background: #ccc;
+}
+
+.sort-box {
+    margin-top: 25px;
+}
