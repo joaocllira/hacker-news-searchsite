@@ -1,21 +1,10 @@
 import { useState, useCallback } from 'react';
 import { SearchBox } from '../SearchBox';
+import { StoryItem } from '../StoryItem';
 import { PageChanger } from '../PageChanger';
+import { Story } from '../StoryItem';
 import '../../App.css';
 import './StoriesContainer.css';
-import StoryItem from '../Story/Story';
-
-export interface Story {
-    id: number,
-    title: string,
-    author: string,
-    score: number,
-    link: string,
-    created_at: string,
-    points: number;
-    relevancy_score: number,
-    url: string
-};
 
 function StoriesContainer() {
     let [storiesList, setStoriesList] = useState<Story[]>([]);

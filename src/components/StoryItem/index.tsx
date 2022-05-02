@@ -1,12 +1,23 @@
-import { Story } from '../StoriesContainer';
 import '../../App.css';
-import './Story.css';
+import './StoryItem.css';
+
+export interface Story {
+    id: number,
+    title: string,
+    author: string,
+    score: number,
+    link: string,
+    created_at: string,
+    points: number;
+    relevancy_score: number,
+    url: string
+};
 
 interface IStoryProps {
     story: Story
 }
 
-function StoryItem({ story }: IStoryProps) {
+export function StoryItem({ story }: IStoryProps) {
     const date = new Date(story.created_at);
 
     return (
@@ -23,4 +34,3 @@ function StoryItem({ story }: IStoryProps) {
     );
 };
 
-export default StoryItem;

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Story } from '../StoriesContainer';
+import { Story } from '../StoryItem';
 import '../../App.css';
 import './SearchBox.css';
 
@@ -29,7 +29,6 @@ export function SearchBox({ returnStoryList, currentPage }: ISearchBoxProps) {
 
         let stories: IStories = await results.json();
 
-        console.log(stories);
         returnStoryList(stories.hits);
     }, [searchText, sortType, returnStoryList]);
 
