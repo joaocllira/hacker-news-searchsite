@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import PageChanger from '.';
+import PageChanger from '../../components/PageChanger';
 
 it('renders a PageChanger without crashing', () => {
     const container = document.createElement('div');

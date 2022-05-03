@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
-import { Story } from '../StoryItem';
-import { StoryItem } from '.';
+import { Story } from '../../components/StoryItem';
+import { StoryItem } from '../../components/StoryItem';
 
 const story: Story = {
     id: 1,

@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import StoriesContainer from '.';
+import StoriesContainer from '../../components/StoriesContainer';
 
 it('renders a StoriesContainer without crashing', () => {
     const container = document.createElement('div');

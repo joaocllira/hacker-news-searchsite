@@ -12,7 +12,7 @@ export interface ISearchBoxProps {
     currentPage: number
 }
 
-enum SearchSortType {
+export enum SearchSortType {
     BY_POPULARITY = "search",
     BY_DATE = "search_by_date"
 }
