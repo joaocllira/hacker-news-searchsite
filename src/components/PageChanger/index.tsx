@@ -43,6 +43,7 @@ export function PageChanger({ returnCurrentPage }: IPageChangerProps) {
     return (
         <div>
             <div style={{ ...buttonStyle, marginRight: "10px" }}
+                data-testid="button-decrement"
                 onClick={handleDecrementButton}>
                 &#9194;
             </div>
@@ -53,6 +54,7 @@ export function PageChanger({ returnCurrentPage }: IPageChangerProps) {
                 }} />
 
             <div style={{ ...buttonStyle, marginLeft: "10px" }}
+                data-testid="button-increment"
                 onClick={handleIncrementButton}>
                 &#9193;
             </div >
