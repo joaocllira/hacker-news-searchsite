@@ -1,4 +1,4 @@
-import { useState, useCallback, memo } from 'react';
+import { useState, useCallback, useMemo, memo } from 'react';
 import SearchBox from '../SearchBox';
 import StoryItem from '../StoryItem';
 import PageChanger from '../PageChanger';
@@ -7,7 +7,7 @@ import '../../App.css';
 import './StoriesContainer.css';
 
 function StoriesContainer() {
-    let [storiesList, setStoriesList] = useState<Story[]>([]);
+    let [storiesList, setStoriesList] = useState<Story[]>();
     let [currentPage, setCurrentPage] = useState<number>(1);
 
     const returnStoryList = useCallback((stories: Story[]) => {
@@ -15,6 +15,16 @@ function StoriesContainer() {
     }, []);
 
     const returnCurrentPage = useCallback((page: number) => setCurrentPage(page), []);
+
+    const ulStoryListing = useMemo(() => (
+        <ul>
+            <>
+                {storiesList?.map((story, index) => (
+                    <StoryItem key={index} story={story} />
+                ))}
+            </>
+        </ul>
+    ), [storiesList]);
 
     return (
         <div className="stories-container">
@@ -27,16 +37,9 @@ function StoriesContainer() {
 
                 <PageChanger returnCurrentPage={returnCurrentPage} />
 
-                {storiesList?.length < 1 && <h5>There are no stories</h5>}
+                {storiesList && storiesList.length < 1 && <h5>There are no stories</h5>}
 
-                {storiesList?.length >= 1 &&
-                    <ul>
-                        <>
-                            {storiesList.map((story, index) => (
-                                <StoryItem key={index} story={story} />
-                            ))}
-                        </>
-                    </ul>}
+                {storiesList && storiesList?.length >= 1 && ulStoryListing}
             </div>
         </div>
     );

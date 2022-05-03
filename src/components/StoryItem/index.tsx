@@ -29,7 +29,7 @@ export function StoryItem({ story }: IStoryProps) {
                 <p><a href={story.url}>{story.url}</a> - Posted on {date.toLocaleDateString("pt-BR")}</p>
             </div>
             <div className="column score-column">
-                <p>{story.relevancy_score || "No score"}</p>
+                <p>{story.points || "No points"}</p>
             </div>
         </li>
     );

@@ -7,13 +7,6 @@ interface IStories {
     hits: Story[]
 }
 
-function handleErrors(response: Response): Response {
-    if (!response.ok) {
-        throw Error(`${response.status} - ${response.statusText}`);
-    }
-    return response;
-}
-
 export async function getRemoteStories(sortType: string, searchText: string, page: number): Promise<Story[]> {
     let response: any = await fetch(`${BASE_URL}/${sortType}?query=${searchText}&tags=story&page=${page}`);
 
@@ -21,3 +14,11 @@ export async function getRemoteStories(sortType: string, searchText: string, pag
 
     return stories.hits;
 }
+/*
+function handleErrors(response: Response): Response {
+    if (!response.ok) {
+        throw Error(`${response.status} - ${response.statusText}`);
+    }
+    return response;
+}
+*/

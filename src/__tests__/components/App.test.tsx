@@ -1,8 +1,14 @@
-import { createRoot } from 'react-dom/client';
+import { screen, render } from '@testing-library/react';
 import App from '../../App';
 
-it('renders the App component without crashing', () => {
-    const container = document.createElement('div');
-    const root = createRoot(container);
-    root.render(<App />,);
+import '@testing-library/jest-dom';
+
+test('renders the App component', () => {
+    render(<App />);
+
+    /** Testing if header is rendered */
+    const header: HTMLInputElement = screen.getByText('AHnSW - A Hacker News Search Website');
+    expect(header).toBeDefined();
+
+    // screen.debug(undefined, 300000);
 });
