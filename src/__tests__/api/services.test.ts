@@ -16,9 +16,13 @@ test('call to remote api to receive stories', async () => {
     const storiesList: Story[] = await getRemoteStories(sortType, searchTerm, page);
 
     // assertions
+
+    /** Testing is stories list is defined after api call */
     expect(storiesList).toBeDefined();
 
+    /** testing the correct length of the result array */
     expect(storiesList.length).toBe(20);
 
+    /** testing the first element */
     expect(storiesList[0]).toBeTruthy();
 }, 10000);
