@@ -14,11 +14,3 @@ export async function getRemoteStories(sortType: string, searchText: string, pag
 
     return stories.hits;
 }
-/*
-function handleErrors(response: Response): Response {
-    if (!response.ok) {
-        throw Error(`${response.status} - ${response.statusText}`);
-    }
-    return response;
-}
-*/
