@@ -8,7 +8,7 @@ test('renders the App component', () => {
 
     /** Testing if header is rendered */
     const header: HTMLInputElement = screen.getByText('AHnSW - A Hacker News Search Website');
-    expect(header).toBeDefined();
+    expect(header).toBeInTheDocument();
 
     // screen.debug(undefined, 300000);
 });
